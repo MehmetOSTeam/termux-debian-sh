@@ -1,0 +1,140 @@
+
+# 📦 Termux Debian XFCE Startup Script
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Android-green?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Environment-Termux--X11-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Type-Automation-orange?style=for-the-badge"/>
+</p>
+
+<p align="center">
+A lightweight automation script that launches a full Debian desktop environment on Android using <b>Termux + Termux-X11</b>.
+</p>
+
+---
+
+## 📸 Preview
+
+<p align="center">
+  <img src="https://via.placeholder.com/800x400.png?text=Termux+Debian+XFCE+Preview" />
+</p>
+
+---
+
+## 🚀 Features
+
+<ul>
+  <li>⚡ Automatic Termux-X11 startup</li>
+  <li>🐧 Debian proot-distro integration</li>
+  <li🖥️ Lightweight desktop environment (Enlightenment)</li>
+  <li>📱 Android optimized</li>
+  <li>🔓 No root required</li>
+  <li>🧠 Simple one-command execution</li>
+</ul>
+
+---
+
+## 📥 Installation
+
+### 1. Clone repository
+
+```bash
+git clone git@github.com:MehmetOSTeam/termux-debian-sh.git
+cd termux-debian-sh
+
+
+---
+
+2. Make script executable
+
+chmod +x debian-xfce.sh
+
+
+---
+
+▶️ Usage
+
+Run the desktop environment with one command:
+
+./debian-xfce.sh
+
+
+---
+
+⚙️ Requirements
+
+<p>Install required packages in Termux:</p>pkg update && pkg upgrade -y
+pkg install x11-repo -y
+pkg install termux-x11-nightly -y
+pkg install proot-distro -y
+
+<p>Install Debian rootfs:</p>proot-distro install debian
+
+
+---
+
+🧠 How It Works
+
+<ol>
+  <li>Terminates existing Termux-X11 sessions</li>
+  <li>Starts X11 display server</li>
+  <li>Configures DISPLAY environment variable</li>
+  <li>Launches Debian using proot-distro</li>
+  <li>Starts Enlightenment desktop environment</li>
+</ol>
+---
+
+⚠️ Notes
+
+<ul>
+  <li>No root access required</li>
+  <li>Performance depends on device hardware</li>
+  <li>First launch may take longer than usual</li>
+  <li>Ensure Termux-X11 is properly installed</li>
+</ul>
+---
+
+📱 Compatibility
+
+<ul>
+  <li>Android 8 or higher</li>
+  <li>Termux (F-Droid version recommended)</li>
+  <li>Termux-X11</li>
+  <li>proot-distro</li>
+</ul>
+---
+
+📂 Project Structure
+
+termux-debian-sh/
+│
+├── debian-xfce.sh
+└── README.md
+
+
+---
+
+👨‍💻 Author
+
+<p align="center">
+<strong>MehmetOS Team</strong>
+</p>
+---
+
+📄 License
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...
+
+
+---
+
+⭐ Support
+
+If you like this project, consider giving it a ⭐ on GitHub.
+
+<p align="center">Made with ❤️ for Termux users</p>
+```
+---
