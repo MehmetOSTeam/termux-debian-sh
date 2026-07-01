@@ -1,29 +1,74 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Termux Debian XFCE Startup Script</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header { text-align: center; margin-bottom: 40px; }
+        h1, h2, h3 { color: #111; }
+        pre {
+            background: #222;
+            color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: monospace;
+        }
+        code { background: #eef; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        ul, ol { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        hr { border: 0; border-top: 1px solid #ddd; margin: 40px 0; }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .btn {
+            display: inline-block;
+            background: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .btn:hover { background: #0052a3; text-decoration: none; }
+    </style>
 </head>
 <body>
 
-    <header align="center">
+    <header>
         <h1>📦 Termux Debian XFCE Startup Script</h1>
-        <p>
-            <span style="background:green;color:white;padding:4px 10px;">Platform-Android</span>
-            <span style="background:blue;color:white;padding:4px 10px;">Environment-Termux-X11</span>
-            <span style="background:orange;color:white;padding:4px 10px;">Type-Automation</span>
-        </p>
-        <p>A lightweight automation script that launches a full Debian desktop environment on Android using <b>Termux + Termux-X11</b>.</p>
+        <div>
+            <span class="badge" style="background:#2e7d32;">Android</span>
+            <span class="badge" style="background:#1565c0;">Termux-X11</span>
+            <span class="badge" style="background:#ef6c00;">Automation</span>
+        </div>
+        <p>An optimized automation script to boot a complete Linux desktop environment on Android devices via <b>Termux & Termux-X11</b> without root privileges.</p>
     </header>
 
     <hr />
 
     <section>
         <h2>📸 Preview</h2>
-        <p align="center">
-            <img src="https://via.placeholder.com/800x400.png?text=Termux+Debian+XFCE+Preview" alt="Preview" width="80%" />
-        </p>
+        <div style="text-align: center;">
+            <img src="https://via.placeholder.com/800x400.png?text=Termux+Debian+XFCE+Preview" alt="Preview" style="max-width: 100%; border-radius: 6px;" />
+        </div>
     </section>
 
     <hr />
@@ -31,54 +76,72 @@
     <section>
         <h2>🚀 Features</h2>
         <ul>
-            <li>⚡ Automatic Termux-X11 startup</li>
-            <li>🐧 Debian proot-distro integration</li>
-            <li>🖥️ Lightweight desktop environment (Enlightenment)</li>
-            <li>📱 Android optimized</li>
-            <li>🔓 No root required</li>
-            <li>🧠 Simple one-command execution</li>
+            <li>⚡ One-tap Termux-X11 display server initialization</li>
+            <li>🐧 Native integration with Debian via <code>proot-distro</code></li>
+            <li>🖥️ Lightweight desktop setup options (XFCE4 / Enlightenment)</li>
+            <li>📱 Fully configured for optimal Android interface scaling</li>
+            <li>🔓 100% safe — requires absolutely <b>No Root</b> access</li>
         </ul>
     </section>
 
     <hr />
 
     <section>
-        <h2>📥 Installation</h2>
-
-        <h3>1. Clone repository</h3>
+        <h2>⚙️ Prerequisites & Package Installation</h2>
+        
+        <h3>1. Native Termux Packages</h3>
+        <p>Open Termux and run the following command to set up the core packages and repositories:</p>
         <pre>
-git clone git@github.com:MehmetOSTeam/termux-debian-sh.git
+pkg update && pkg upgrade -y
+pkg install x11-repo -y
+pkg install termux-x11-nightly proot-distro pulseaudio -y
+        </pre>
+        
+        <p>Install the base Debian rootfs system:</p>
+        <pre>
+proot-distro install debian
+        </pre>
+
+        <h3>2. Internal Debian GUI Packages</h3>
+        <p>Log into your Debian proot environment using <code>proot-distro login debian</code> and install the required desktop components:</p>
+        <pre>
+apt update && apt upgrade -y
+apt install xfce4 xfce4-goodies enlightenment desktop-base exo-utils -y
+        </pre>
+    </section>
+
+    <hr />
+
+    <section>
+        <h2>📥 Setup Guide</h2>
+
+        <h3>1. Clone the Repository</h3>
+        <pre>
+git clone git@github.com:MDTLorg/termux-debian-sh.git
 cd termux-debian-sh
         </pre>
 
-        <h3>2. Make script executable</h3>
+        <h3>2. Make the Script Executable</h3>
         <pre>
 chmod +x debian-xfce.sh
         </pre>
 
-        <h3>⬇️ download</h3>
+        <h3>⬇️ Direct Downloads</h3>
         <p>
-            <a href="https://github.com/MehmetOSTeam/termux-debian-sh/archive/refs/heads/main.zip">
-                📦 ZIP download (main branch)
+            <a href="https://github.com/MDTLorg/termux-debian-sh/archive/refs/heads/main.zip" class="btn">
+                📦 Download Source ZIP
             </a>
             <br />
-            <a href="https://github.com/MehmetOSTeam/termux-debian-sh.git">
-                🔗 Git clone
-            </a>
-            <br />
-            <a href="https://github.com/MehmetOSTeam/termux-debian-sh">
-                🌐 GitHub repo page
-            </a>
-            <br>
-            <a href="debian-xfce.sh">Download(.sh)</a>
+            <a href="debian-xfce.sh">📄 Download Raw Script (.sh)</a> | 
+            <a href="https://github.com/MDTLorg/termux-debian-sh">🌐 GitHub Repository</a>
         </p>
     </section>
 
     <hr />
 
     <section>
-        <h2>▶️ Usage</h2>
-        <p>Run the desktop environment with one command:</p>
+        <h2>▶️ How to Launch</h2>
+        <p>Simply trigger the script to deploy the full desktop environment:</p>
         <pre>
 ./debian-xfce.sh
         </pre>
@@ -87,55 +150,14 @@ chmod +x debian-xfce.sh
     <hr />
 
     <section>
-        <h2>⚙️ Requirements</h2>
-        <p>Install required packages in Termux:</p>
-        <pre>
-pkg update &amp;&amp; pkg upgrade -y
-pkg install x11-repo -y
-pkg install termux-x11-nightly -y
-pkg install proot-distro -y
-        </pre>
-        <p>Install Debian rootfs:</p>
-        <pre>
-proot-distro install debian
-        </pre>
-    </section>
-
-    <hr />
-
-    <section>
-        <h2>🧠 How It Works</h2>
+        <h2>🧠 Under the Hood</h2>
         <ol>
-            <li>Terminates existing Termux-X11 sessions</li>
-            <li>Starts X11 display server</li>
-            <li>Configures DISPLAY environment variable</li>
-            <li>Launches Debian using proot-distro</li>
-            <li>Starts Enlightenment desktop environment</li>
+            <li>Kills any active ghost or hanging Termux-X11 processes.</li>
+            <li>Launches the Termux-X11 display server backend.</li>
+            <li>Configures internal <code>DISPLAY</code> environment pathways.</li>
+            <li>Mounts the Debian environment utilizing <code>proot-distro</code>.</li>
+            <li>Initializes the XFCE desktop architecture effortlessly.</li>
         </ol>
-    </section>
-
-    <hr />
-
-    <section>
-        <h2>⚠️ Notes</h2>
-        <ul>
-            <li>No root access required</li>
-            <li>Performance depends on device hardware</li>
-            <li>First launch may take longer than usual</li>
-            <li>Ensure Termux-X11 is properly installed</li>
-        </ul>
-    </section>
-
-    <hr />
-
-    <section>
-        <h2>📱 Compatibility</h2>
-        <ul>
-            <li>Android 8 or higher</li>
-            <li>Termux (F-Droid version recommended)</li>
-            <li>Termux-X11</li>
-            <li>proot-distro</li>
-        </ul>
     </section>
 
     <hr />
@@ -153,46 +175,27 @@ termux-debian-sh/
     <hr />
 
     <section>
-        <h2>👨‍💻 Author</h2>
-        <p align="center"><strong>MDTLorg Team</strong></p>
+        <h2>👨‍💻 Maintained By</h2>
+        <p style="text-align: center; font-size: 18px;">
+            <strong>Developed under <a href="https://github.com/MDTLorg">MDTLorg</a></strong>
+        </p>
     </section>
 
     <hr />
 
     <section>
         <h2>📄 License</h2>
-        <p>MIT License</p>
-        <p>
-            Permission is hereby granted, free of charge, to any person obtaining a copy
-            of this software and associated documentation files...
-        </p>
+        <p>This utility is open-source software licensed under the <b>MIT License</b>.</p>
     </section>
 
     <hr />
 
-    <footer align="center">
-        <p>
-            ⭐ If you like this project, consider giving it a ⭐ on GitHub.
-        </p>
-        <p>Made with ❤️ for Termux users</p>
-        <p>
-            <small>
-                <a href="https://github.com/MehmetOSTeam/termux-debian-sh/archive/refs/heads/main.zip">
-                    📥 download (ZIP)
-                </a>
-                &nbsp;|&nbsp;
-                <a href="https://github.com/MehmetOSTeam/termux-debian-sh.git">
-                    🌀 Git clome
-                </a>
-                &nbsp;|&nbsp;
-                <a href="https://github.com/MehmetOSTeam/termux-debian-sh">
-                    🌐 GitHub adress
-                    &nbsp;|&nbsp;
-                  <a href="debian-xfce.sh">Download(.sh)</a>
-                </a>
-            </small>
+    <footer>
+        <p style="text-align: center;">
+            ⭐ Enjoying this build? Support us with a star on <a href="https://github.com/MDTLorg/termux-debian-sh">GitHub</a>!
         </p>
     </footer>
 
 </body>
 </html>
+
